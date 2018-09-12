@@ -1,0 +1,12 @@
+int x = 27;         ${{comment}}// x 的类型是 int${{default}}
+const int cx = x;   ${{comment}}// cx 的类型是 const int${{default}}
+const int& rx = x;  ${{comment}}// rx 的类型是 const int&${{default}}
+
+template<typename T>
+void f(T& param)
+
+f(x);  ${{comment}}// T 的型别是 ${{variable}}${{tx}}${{comment}}, param 的型别是 ${{variable}}${{px}}${{default}}
+
+f(cx); ${{comment}}// T 的型别是 ${{variable}}${{tcx}}${{comment}}, param 的型别是 ${{variable}}${{pcx}}${{default}}
+
+f(rx); ${{comment}}// T 的型别是 ${{variable}}${{trx}}${{comment}}, param 的型别是 ${{variable}}${{prx}}${{default}}

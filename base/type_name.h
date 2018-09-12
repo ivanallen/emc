@@ -19,11 +19,13 @@ std::string type_name()
     typedef typename std::remove_reference<T>::type TR;
     std::string r;
     if (std::is_const<TR>::value)
-        r += " const";
-    if (std::is_volatile<TR>::value)
-        r += " volatile";
+        r += "const";
+    if (std::is_volatile<TR>::value) {
+		if (!r.empty()) r += " ";
+        r += "volatile";
+	}
 
-	r += " ";
+	if (!r.empty()) r += " ";
 	r += cpp_filter(typeid(TR).name());
 
     if (std::is_lvalue_reference<T>::value)

@@ -14,15 +14,16 @@
 using namespace emc::base;
 
 template<typename T>
-void f1(T& param) {
-	std::cout << "    " << color::yellow << "T :" << color::green << type_name<T>() << cntl::def << std::endl;
-	std::cout << "    " << color::yellow << "T&:" << color::green << type_name<T&>() << cntl::def << std::endl;
+std::string f1(T& param) {
+	return type_name<T>();
 }
 
 template<typename T>
 void f2(const T& param) {
-	std::cout << "    " << color::yellow << "T :" << color::green << type_name<T>() << cntl::def << std::endl;
-	std::cout << "    " << color::yellow << "const T&:" << color::green << type_name<const T&>() << cntl::def << std::endl;
+	return type_name<T>();
+}
+
+void test1() {
 }
 
 int main() {
@@ -30,36 +31,22 @@ int main() {
 	const int cx = x;
 	const int& rx = x;
 
-	std::cout << "f(T&)" << std::endl;
-	std::cout << std::endl;
+	std::string tx = f1(x);
+	std::string tcx = f1(cx);
+	std::string trx = f1(rx);
 
 
-	std::cout << "int x = 27; f(x);" << std::endl;
-	f1(x);
-	std::cout << std::endl;
-
-	std::cout << "const int cx = x; f(cx);" << std::endl;
-	f1(cx);
-	std::cout << std::endl;
-
-	std::cout << "const int& rx = x; f(rx);" << std::endl;
-	f1(rx);
-	std::cout << std::endl;
-
-	std::cout << "f(const T&)" << std::endl;
-	std::cout << std::endl;
-
-	std::cout << "int x = 27; f(x);" << std::endl;
-	f2(x);
-	std::cout << std::endl;
-
-	std::cout << "const int cx = x; f(cx);" << std::endl;
-	f2(cx);
-	std::cout << std::endl;
-
-	std::cout << "const int& rx = x; f(rx);" << std::endl;
-	f2(rx);
-	std::cout << std::endl;
+	std::cout << render("output.tmpl", {
+		{"variable", color::yellow},
+		{"comment", color::cyan},
+		{"default", cntl::def},
+		{"tx", tx},
+		{"tcx", tcx},
+		{"trx", trx},
+		{"px", tx + "&"},
+		{"pcx", tcx + "&"},
+		{"prx", trx + "&"}
+	});
 
 	return 0;
 }
