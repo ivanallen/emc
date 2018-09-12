@@ -14,7 +14,7 @@
 using namespace emc::base;
 
 template<typename T>
-std::string f(T& param) {
+std::string f(const T& param) {
 	return type_name<T>();
 }
 
@@ -33,13 +33,13 @@ int main() {
 		{"variable", color::yellow},
 		{"comment", color::cyan},
 		{"default", cntl::def},
-		{"param_type", "T&"},
+		{"param_type", "const T&"},
 		{"tx", tx},
 		{"tcx", tcx},
 		{"trx", trx},
-		{"px", tx + "&"},
-		{"pcx", tcx + "&"},
-		{"prx", trx + "&"}
+		{"px", "const " + tx + "&"},
+		{"pcx", "const " + tcx + "&"},
+		{"prx", "const " + trx + "&"}
 	});
 
 	return 0;

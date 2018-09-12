@@ -12,7 +12,7 @@ namespace base {
 std::string read_all(const char* file) {
 	std::ifstream is (file, std::ifstream::binary);
 	if (!is) {
-		fprintf(stderr, "bad number of args");
+		fprintf(stderr, "bad file");
 		exit(-1);
 	}
 
@@ -24,7 +24,7 @@ std::string read_all(const char* file) {
 
 	is.read (buffer, length);
 	if (!is) {
-		fprintf(stderr, "bad number of args");
+		fprintf(stderr, "bad file");
 		exit(-1);
 	}
 	is.close();

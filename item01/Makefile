@@ -2,13 +2,16 @@ CC=g++
 CFLAGS=--std=c++11 -I../base
 LFLAGS=-L../base -lbase
 
-all: demo01
+all: demo01 demo02
 
 base:
 	$(MAKE) -C ../base
 
 demo01: base demo01.cpp
 	$(CC) -o demo01 demo01.cpp $(CFLAGS) $(LFLAGS)
+
+demo02: base demo02.cpp
+	$(CC) -o demo02 demo02.cpp $(CFLAGS) $(LFLAGS)
 
 
 .PHONY:all
