@@ -2,7 +2,7 @@ CC=g++
 CFLAGS=--std=c++11 -I../base
 LFLAGS=-L../base -lbase
 
-all: demo01 demo02 demo03 demo04 demo05
+all: demo01 demo02 demo03 demo04 demo05 demo06 demo07
 
 ../base/libbase.a: ../base
 	$(MAKE) -C ../base
@@ -21,5 +21,11 @@ demo04: ../base/libbase.a demo04.cpp
 
 demo05: ../base/libbase.a demo05.cpp
 	$(CC) -o demo05 demo05.cpp $(CFLAGS) $(LFLAGS)
+
+demo06: ../base/libbase.a demo06.cpp
+	$(CC) -o demo06 demo06.cpp $(CFLAGS) $(LFLAGS)
+
+demo07: ../base/libbase.a demo07.cpp
+	$(CC) -o demo07 demo07.cpp $(CFLAGS) $(LFLAGS)
 
 .PHONY:all

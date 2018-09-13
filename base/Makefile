@@ -1,8 +1,9 @@
 CC=g++
 SRC=${wildcard  *.cpp}
+HEADER=${wildcard  *.h}
 OBJ=${patsubst %.cpp,%.o,${SRC}}
 
-libbase.a: $(OBJ)
+libbase.a: $(OBJ) $(HEADER)
 	ar -r libbase.a $(OBJ)
 
 %.o: %.cpp
