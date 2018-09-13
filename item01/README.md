@@ -11,21 +11,21 @@ $ make
 
 - demo01
 
-```
+```c++
 template <typename T>
 void f(T& param)
 ```
 
 - demo02
 
-```
+```c++
 template <typename T>
 void f(const T& param)
 ```
 
 - demo03
 
-```
+```c++
 template <typename T>
 void f(T* param)
 ```
@@ -34,7 +34,7 @@ void f(T* param)
 
 - demo04
 
-```
+```c++
 template <typename T>
 void f(T&& param)
 ```
@@ -43,7 +43,7 @@ void f(T&& param)
 
 - demo05
 
-```
+```c++
 template <typename T>
 void f(T param)
 ```
