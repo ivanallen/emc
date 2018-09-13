@@ -1,8 +1,6 @@
 /**
  * 情况一：模板参数是引用或指针，但不是通用引用(Universal Reference)
  * template<typename T>
- * f(T&)
- * f(const T&)
  * f(T*)
  */
 

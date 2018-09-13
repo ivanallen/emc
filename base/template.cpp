@@ -21,7 +21,6 @@ std::string read_all(const char* file) {
 	is.seekg (0, is.beg);
 
 	char * buffer = new char [length];
-
 	is.read (buffer, length);
 	if (!is) {
 		fprintf(stderr, "bad file");

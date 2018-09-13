@@ -1,7 +1,7 @@
 /**
- * 情况一：模板参数是引用或指针，但不是通用引用(Universal Reference)
+ * 情况一：模板参数既非引用也非指针
  * template<typename T>
- * f(T&)
+ * f(T)
  */
 
 #include <iostream>
@@ -12,7 +12,7 @@
 using namespace emc::base;
 
 template<typename T>
-void f(T& param, std::string& type_of_t, std::string& type_of_param) {
+void f(T param, std::string& type_of_t, std::string& type_of_param) {
 	type_of_t = type_name<T>();
 	type_of_param = type_name<decltype(param)>();
 }
@@ -31,11 +31,11 @@ int main() {
 	f(cx, tcx, pcx);
 	f(rx, trx, prx);
 
-	std::cout << render("output01.tmpl", {
+	std::cout << render("output05.tmpl", {
 		{"variable", color::yellow},
 		{"comment", color::cyan},
 		{"default", cntl::def},
-		{"param_type", "T&"},
+		{"param_type", "T"},
 		{"type_x", "int"},
 		{"type_cx", "const int"},
 		{"type_rx", "const int&"},
