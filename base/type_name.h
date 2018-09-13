@@ -2,6 +2,7 @@
  * Author: Allen
  *
  * 类型萃取
+ * 参考：https://stackoverflow.com/questions/18369128/how-can-i-see-the-type-deduced-for-a-template-type-parameter
  */
 
 #include <string>
@@ -19,7 +20,6 @@ std::string type_name()
     typedef typename std::remove_reference<T>::type TR;
     std::string r;
 
-	//if (!r.empty()) r += " ";
 	r += cpp_filter(typeid(TR).name());
 
     if (std::is_const<TR>::value) {
@@ -31,7 +31,6 @@ std::string type_name()
 		if (!r.empty()) r += " ";
         r += "volatile";
 	}
-
 
     if (std::is_lvalue_reference<T>::value)
         r += "&";
