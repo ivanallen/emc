@@ -14,13 +14,12 @@
 namespace emc {
 namespace base {
 
+// 应该能满足大部分需求了
 template <typename T>
 std::string type_name()
 {
     typedef typename std::remove_reference<T>::type TR;
     std::string r;
-
-	r += cpp_filter(typeid(TR).name());
 
     if (std::is_const<TR>::value) {
 		if (!r.empty()) r += " ";
@@ -32,10 +31,45 @@ std::string type_name()
         r += "volatile";
 	}
 
-    if (std::is_lvalue_reference<T>::value)
-        r += "&";
-    else if (std::is_rvalue_reference<T>::value)
-        r += "&&";
+	if (!r.empty()) r += " ";
+	r += cpp_filter(typeid(TR).name());
+
+    if (std::is_array<TR>::value) {
+		size_t found = r.find("[");
+		size_t last = found;
+		while(found != std::string::npos) {
+			last = found;
+			if (found < r.length() - 1 && r[found + 1] != '*') {
+				break;
+			}
+			found = r.find("[", found + 1);
+		}
+		if (std::is_lvalue_reference<T>::value) {
+			r.replace(last, 0, "(&)");
+		} else if (std::is_rvalue_reference<T>::value) {
+			r.replace(last, 0, "(&&)");
+		}
+	} else if (std::is_function<TR>::value) {
+		size_t found = r.find("(");
+		size_t last = found;
+		while(found != std::string::npos) {
+			last = found;
+			if (found < r.length() - 1 && r[found + 1] != '*') {
+				break;
+			}
+			found = r.find("(", found + 1);
+		}
+		if (std::is_lvalue_reference<T>::value) {
+			r.replace(last, 0, "(&)");
+		} else if (std::is_rvalue_reference<T>::value) {
+			r.replace(last, 0, "(&&)");
+		}
+	} else {
+		if (std::is_lvalue_reference<T>::value)
+			r += "&";
+		else if (std::is_rvalue_reference<T>::value)
+			r += "&&";
+	}
     return r;
 }
 

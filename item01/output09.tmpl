@@ -1,0 +1,7 @@
+void some_func(int, double);         ${{comment}}// some_func 是个函数，类型是 void(int, double)${{default}}
+
+
+template<typename T>
+void f(T param)
+
+f(some_func);  ${{comment}}// T 的型别是 ${{variable}}${{tfunc}}${{comment}}, param 的型别是 ${{variable}}${{pfunc}}${{default}}
