@@ -1,0 +1,13 @@
+#!/bin/bash
+
+BOOST=boost_1_68_0
+
+[ -d thirdparty ] || mkdir thirdparty
+cd thirdparty
+
+[ -f ${BOOST}.tar.gz ] || curl -O https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.gz
+
+rm -rf ${BOOST}
+tar -xzvf ${BOOST}.tar.gz
+
+cd ..

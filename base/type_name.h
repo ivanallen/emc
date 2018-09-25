@@ -6,15 +6,25 @@
  */
 
 #include <string>
+/*
 #include <typeinfo>       // operator typeid
 #include <type_traits>    // for std::remove_reference
 
 #include "cpp_filter.h"
+*/
+#include <boost/type_index.hpp>
 
 namespace emc {
 namespace base {
 
-// 应该能满足大部分需求了
+template <typename T>
+std::string type_name() {
+	using boost::typeindex::type_id_with_cvr;
+	return type_id_with_cvr<T>().pretty_name();
+}
+
+// 下面是一个自己编写的，能满足大多数要求。建议使用 boost 提供的方法。
+/*
 template <typename T>
 std::string type_name()
 {
@@ -72,6 +82,7 @@ std::string type_name()
 	}
     return r;
 }
+*/
 
 } // namespace base
 } // namespace emc

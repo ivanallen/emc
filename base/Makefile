@@ -2,6 +2,7 @@ CC=g++
 SRC=${wildcard  *.cpp}
 HEADER=${wildcard  *.h}
 OBJ=${patsubst %.cpp,%.o,${SRC}}
+CXXFLAGS=-I../thirdparty/boost_1_68_0
 
 libbase.a: $(OBJ) $(HEADER)
 	ar -r libbase.a $(OBJ)

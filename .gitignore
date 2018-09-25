@@ -4,3 +4,5 @@
 *.un
 *.un~
 *.bak
+*.tar
+*.tar.gz
